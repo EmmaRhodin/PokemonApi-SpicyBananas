@@ -10,13 +10,12 @@
     <h1 class="text-danger">@Model.ErrorMessage</h1>
 }
 
-@if(Model.Pokemon != null)
-{
-    <h1>@Model.Pokemon.Name</h1>
-    <ul>
-    @foreach(var form in Model.Pokemon.Forms)
+
+<select id="pokemon-list" name="pokemon">
+    @foreach(var pokemon in Enum.GetNames(typeof(Pokemons)))
     {
-       <li>@form.Name</li> 
+        <option value="@pokemon">@pokemon</option>
     }
-    </ul>
-}
+</select>
+
+<button> Information </button>

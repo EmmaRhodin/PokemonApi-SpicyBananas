@@ -167,24 +167,32 @@ namespace PokemonApi_SpicyBananas.Pages
 
         public Root? Pokemon { get; set; }
         public string? ErrorMessage { get; set; }
+        public async Task OnSelect()
+        {
+            string selectedPokemon = "bulbasaur";
+            try
+            {
+                Root result = await new ApiCaller().MakeCall(selectedPokemon);
 
+                Pokemon = result;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
         public async Task OnGet()
         {
-            foreach (var pokemon in Enum.GetValues(typeof(Pokemons)).Cast<Pokemons>())
+            try
             {
-                try
-                {
-                    string pokemonName = pokemon.ToString();
-                    Root result = await new ApiCaller().MakeCall("pokemonName");
+                Root result = await new ApiCaller().MakeCall("charmander");
 
-                    Pokemon = result;
-                }
-                catch (Exception ex)
-                {
-                    ErrorMessage = ex.Message;
-                }
+                Pokemon = result;
             }
-
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
 
 
