@@ -10,11 +10,13 @@
     <h1 class="text-danger">@Model.ErrorMessage</h1>
 }
 
-@if(Model.PokemonModels != null && Model.PokemonModels.Any())
+@if(Model.Pokemon != null)
 {
-    @foreach(PokemonModel pokemonModel in Model.PokemonModels)
+    <h1>@Model.Pokemon.Name</h1>
+    <ul>
+    @foreach(var form in Model.Pokemon.Forms)
     {
-        <h1>@pokemonModel.Name</h1>
-        <h1>@pokemonModel.Height</h1>
+       <li>@form.Name</li> 
     }
+    </ul>
 }

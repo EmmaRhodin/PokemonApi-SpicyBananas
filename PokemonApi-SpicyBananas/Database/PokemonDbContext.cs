@@ -10,9 +10,7 @@ namespace PokemonApi_SpicyBananas.Database
 
         }
 
-        public DbSet<PokemonModel> PokemonModels { get; set; }
-        public DbSet<AbilityModel> AbilityModels { get; set; }
-        public DbSet<TypeModel> TypeModels { get; set; }
+        public DbSet<PokemonDbModel> PokemonModels { get; set; }
 
 
         // Override

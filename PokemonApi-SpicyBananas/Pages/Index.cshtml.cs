@@ -13,16 +13,16 @@ namespace PokemonApi_SpicyBananas.Pages
             _logger = logger;
         }
 
-        public List<PokemonModel> PokemonModels { get; set; }
+        public Root? Pokemon { get; set; }
         public string? ErrorMessage { get; set; }
 
-        public async void OnGet()
+        public async Task OnGet()
         {
             try
             {
-                Root result = await new ApiCaller().MakeCall("pokemonModel");
+                Root result = await new ApiCaller().MakeCall("bulbasaur");
 
-                PokemonModels = result.Pokemons;
+                Pokemon = result;
             }
             catch (Exception ex)
             {
