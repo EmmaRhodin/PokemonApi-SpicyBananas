@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PokemonApi_SpicyBananas.API;
+using PokemonApi_SpicyBananas.Models;
 
 namespace PokemonApi_SpicyBananas.Pages
 {
@@ -12,9 +13,23 @@ namespace PokemonApi_SpicyBananas.Pages
             _logger = logger;
         }
 
-        public void OnGet()
-        {
+        public List<PokemonModel> PokemonModels { get; set; }
+        public string? ErrorMessage { get; set; }
 
+        public async void OnGet()
+        {
+            try
+            {
+                Root result = await new ApiCaller().MakeCall("pokemonModel");
+
+                PokemonModels = result.Pokemons;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
+
+
     }
 }

@@ -1,10 +1,20 @@
 ﻿@page
+@using PokemonApi_SpicyBananas.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <h1 class="text-danger">@Model.ErrorMessage</h1>
+}
+
+@if(Model.PokemonModels != null && Model.PokemonModels.Any())
+{
+    @foreach(PokemonModel pokemonModel in Model.PokemonModels)
+    {
+        <h1>@pokemonModel.Name</h1>
+        <h1>@pokemonModel.Height</h1>
+    }
+}
